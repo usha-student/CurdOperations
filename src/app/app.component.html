@@ -1,0 +1,72 @@
+<div *ngIf="mobiles else err" class="container mob-table mx-auto">
+
+  <div class="headers">
+    <h2 class="table-title">Manage Mobiles</h2>
+    <button class="btn add" (click)="openFome()">Add Mobile</button>
+  </div>
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Mobiles</th>
+          <th>Price(Rs)</th>
+          <th>RAM</th>
+          <th>Storage</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="text-center" >
+        <tr *ngFor="let mobile of mobiles index as list">
+          <td>{{mobile['name']}}</td>
+          <td>{{mobile['price']}}</td>
+          <td>{{mobile['ram']}}</td>
+          <td>{{mobile['storage']}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="openFome(mobile)">Edit</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteMobile(list)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--else part-->
+<ng-template #err >
+  <p class="text-danger">Data is not there</p>
+</ng-template>
+
+<!--Add Mobile-->
+<div class="form-wrapper mx-auto mob-table" *ngIf="showFome">
+
+  <div class="mobileForm">
+    <h2 class="text-center text-info">{{formHeader}}</h2>
+
+    <div class="group  mx-auto">
+      <label for="">name:</label>
+      <input type="text" class="form-control" [(ngModel)]="mobileName" name="name" required minlength="4">
+    </div>
+    <div class="group  mx-auto">
+      <label for="">price:</label>
+      <input type="text" class="form-control" [(ngModel)]="price" name="closeFome" required min=1000>
+    </div>
+    <div class="group  mx-auto">
+      <label for="">RAM:</label>
+      <input type="text" class="form-control" [(ngModel)]="RAM" name="RAM" required min=1>
+    </div>
+    <div class="group  mx-auto">
+      <label for="">storage:</label>
+      <input type="text" class="form-control" [(ngModel)]="storage" name="storage" required min=32>
+    </div>
+
+    <div class="action">
+      <button class="btn btn-primary save" (click)="saveModile()">Save Modile</button>
+      <button class="btn btn-danger close" (click)="closeFome()">Close Fome</button>
+    </div>
+  </div>
+
+</div>
